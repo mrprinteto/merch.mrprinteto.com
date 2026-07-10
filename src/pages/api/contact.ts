@@ -142,7 +142,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: 'MrPrinteto Merch <merch@mrprinteto.com>',
+      from: 'MrPrinteto Merch <noreply@merch.mrprinteto.com>',
       to: [import.meta.env.TO_EMAIL as string],
       replyTo: data.email,
       subject: `[Merch] ${TIPO_LABELS[data.tipo]} — ${data.nombre}`,

@@ -117,7 +117,7 @@
   <button type="submit" id="cf-submit" class="btn-primary">
     <span id="cf-submit-label">Enviar solicitud</span>
     <i id="cf-icon-arrow" class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-    <i id="cf-icon-spin" class="fa-solid fa-spinner fa-spin hidden" aria-hidden="true"></i>
+    <i id="cf-icon-spin" class="fa-solid fa-spinner fa-spin" style="display:none" aria-hidden="true"></i>
   </button>
 </form>
 
@@ -138,8 +138,8 @@
   function setLoading(loading: boolean) {
     submitBtn.disabled = loading;
     submitLabel.textContent = loading ? 'Enviando…' : 'Enviar solicitud';
-    iconArrow.classList.toggle('hidden', loading);
-    iconSpin.classList.toggle('hidden', !loading);
+    iconArrow.style.display = loading ? 'none' : '';
+    iconSpin.style.display = loading ? '' : 'none';
   }
 
   function clearErrors() {
