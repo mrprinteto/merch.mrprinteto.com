@@ -1,0 +1,62 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+import ContactForm from './ContactForm.astro';
+---
+
+<Section id="contacto" style="background-color: var(--surface-card);">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Left: copy -->
+      <div class="space-y-6 animate-on-scroll">
+        <p class="label-mono">// CONTACTO</p>
+        <h2 class="section-heading">Cuéntame<br />tu proyecto.</h2>
+        <p class="text-off-white/60 leading-relaxed">
+          Sin formularios eternos ni presupuestos automáticos. Escríbeme, leo
+          todo, y te respondo con un precio real en menos de 24 horas.
+        </p>
+
+        <ul class="space-y-4 text-sm" style="color: var(--text-muted);">
+          <li class="flex items-center gap-3">
+            <span
+              class="w-8 h-8 rounded-[var(--radius-sm)] flex items-center justify-center flex-shrink-0"
+              style="background: rgba(74,43,212,0.15);"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-envelope" style="color: var(--accent);"></i>
+            </span>
+            <a href="mailto:merch@mrprinteto.com" class="hover:text-off-white transition-colors">
+              merch@mrprinteto.com
+            </a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span
+              class="w-8 h-8 rounded-[var(--radius-sm)] flex items-center justify-center flex-shrink-0"
+              style="background: rgba(74,43,212,0.15);"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-clock" style="color: var(--accent);"></i>
+            </span>
+            Respuesta en &lt;24 horas
+          </li>
+          <li class="flex items-center gap-3">
+            <span
+              class="w-8 h-8 rounded-[var(--radius-sm)] flex items-center justify-center flex-shrink-0"
+              style="background: rgba(74,43,212,0.15);"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i>
+            </span>
+            Salamanca · envíos a toda España
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: form -->
+      <div class="animate-on-scroll" data-delay="1">
+        <ContactForm />
+      </div>
+    </div>
+  </Container>
+</Section>

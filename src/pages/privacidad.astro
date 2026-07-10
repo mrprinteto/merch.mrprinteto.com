@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/Container.astro';
+---
+
+<BaseLayout
+  title="Política de Privacidad | MrPrinteto Merch"
+  description="Política de privacidad de merch.mrprinteto.com — cómo gestionamos y protegemos tus datos personales."
+>
+  <Navbar />
+
+  <main class="pt-24 pb-20">
+    <Container>
+      <article class="prose max-w-2xl mx-auto" style="color: var(--text-muted);">
+
+        <h1 style="color: var(--text); letter-spacing: -0.02em;">Política de Privacidad</h1>
+
+        <h2 style="color: var(--text);">1. Responsable del tratamiento</h2>
+        <p>
+          <strong>Nombre comercial:</strong> MrPrinteto<br />
+          <strong>Email:</strong> <a href="mailto:merch@mrprinteto.com" style="color: var(--accent);">merch@mrprinteto.com</a>
+        </p>
+
+        <h2 style="color: var(--text);">2. Datos que recopilamos</h2>
+        <p>
+          A través del formulario de contacto recopilamos los siguientes datos personales:
+        </p>
+        <ul>
+          <li>Nombre o nombre de empresa</li>
+          <li>Dirección de correo electrónico</li>
+          <li>Información sobre el proyecto (tipo, cantidad estimada y descripción)</li>
+        </ul>
+        <p>No recopilamos datos de pago ni datos especialmente sensibles.</p>
+
+        <h2 style="color: var(--text);">3. Finalidad del tratamiento</h2>
+        <p>
+          Los datos recogidos se utilizan exclusivamente para responder a la solicitud
+          de presupuesto o consulta enviada a través del formulario de contacto, y para
+          la gestión del pedido en caso de que se formalice.
+        </p>
+
+        <h2 style="color: var(--text);">4. Base legal</h2>
+        <p>
+          El tratamiento de tus datos se basa en el consentimiento que prestas al enviar
+          el formulario (art. 6.1.a RGPD) y, en su caso, en la ejecución de un contrato
+          o relación precontractual (art. 6.1.b RGPD).
+        </p>
+
+        <h2 style="color: var(--text);">5. Conservación de los datos</h2>
+        <p>
+          Los datos se conservarán mientras sean necesarios para la gestión de la
+          solicitud y durante el período legal de conservación que corresponda, no
+          siendo usados para ninguna otra finalidad.
+        </p>
+
+        <h2 style="color: var(--text);">6. Comunicación a terceros</h2>
+        <p>
+          No cedemos tus datos a terceros, salvo obligación legal. El envío del formulario
+          utiliza el servicio <strong>Resend</strong> como pasarela de correo electrónico
+          transaccional, cuya política de privacidad puedes consultar en
+          <a href="https://resend.com/privacy" target="_blank" rel="noopener" style="color: var(--accent);">resend.com/privacy</a>.
+        </p>
+
+        <h2 style="color: var(--text);">7. Tus derechos</h2>
+        <p>
+          Tienes derecho a acceder, rectificar, suprimir, limitar el tratamiento,
+          oponerte y a la portabilidad de tus datos. Para ejercer cualquiera de estos
+          derechos, contáctanos en
+          <a href="mailto:merch@mrprinteto.com" style="color: var(--accent);">merch@mrprinteto.com</a>.
+        </p>
+        <p>
+          También tienes derecho a presentar una reclamación ante la
+          <a href="https://www.aepd.es" target="_blank" rel="noopener" style="color: var(--accent);">Agencia Española de Protección de Datos (AEPD)</a>.
+        </p>
+
+        <h2 style="color: var(--text);">8. Cookies</h2>
+        <p>
+          Este sitio web no utiliza cookies de seguimiento ni herramientas de analítica.
+          Solo se pueden utilizar cookies técnicas estrictamente necesarias para el
+          funcionamiento del sitio.
+        </p>
+
+        <p style="font-size: 0.85rem; margin-top: 3rem;">
+          Última actualización: julio de 2026
+        </p>
+      </article>
+    </Container>
+  </main>
+
+  <Footer />
+</BaseLayout>

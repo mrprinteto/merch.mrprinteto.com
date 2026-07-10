@@ -1,0 +1,56 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+import ServiceCard from './ServiceCard.astro';
+
+const services = [
+  {
+    icon: 'fa-solid fa-handshake',
+    title: 'Reuniones y presentaciones',
+    description:
+      'Lleva algo distinto a la mesa. Tarjeteros, soportes, placas con nombre o miniaturas 3D de tus productos. Impresión que abre conversaciones.',
+  },
+  {
+    icon: 'fa-solid fa-gift',
+    title: 'Regalos corporativos',
+    description:
+      'Detalla a tu equipo o a tus clientes con algo que no se compra en Amazon. Personal, funcional y memorable. Nada de bolígrafos genéricos.',
+  },
+  {
+    icon: 'fa-solid fa-calendar-days',
+    title: 'Eventos y ferias',
+    description:
+      'Merchandising para stands, lanzamientos, conferencias y presentaciones. Series cortas desde 10 unidades, listos antes de tu fecha.',
+  },
+  {
+    icon: 'fa-solid fa-sliders',
+    title: 'Personalización libre',
+    description:
+      'Trae tu idea, tu boceto o tu fichero 3D. Lo adaptamos, lo imprimimos con el material que elijas y lo enviamos con tu identidad de marca.',
+  },
+];
+---
+
+<Section id="servicios">
+  <Container>
+    <div class="text-center mb-12 space-y-3 animate-on-scroll">
+      <p class="label-mono">// SERVICIOS</p>
+      <h2 class="section-heading">¿Para qué lo necesitas?</h2>
+      <p class="text-off-white/60 max-w-xl mx-auto">
+        Impresión 3D aplicada a negocio real. No son prototipos — son piezas
+        terminadas con tu marca.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {services.map((service, i) => (
+        <ServiceCard
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+          delay={i + 1}
+        />
+      ))}
+    </div>
+  </Container>
+</Section>

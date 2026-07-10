@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+
+const categoriaLabels: Record<string, string> = {
+  reunion: 'Reunión',
+  regalo: 'Regalo',
+  evento: 'Evento',
+  personalizacion: 'Personalización',
+};
+
+// Brand-compliant accent per category (only from palette)
+const categoriaStyle: Record<string, string> = {
+  reunion: 'color: var(--accent-soft); background: rgba(155,139,218,0.12);',
+  regalo: 'color: var(--accent); background: rgba(74,43,212,0.12);',
+  evento: 'color: var(--text); background: rgba(240,239,243,0.08);',
+  personalizacion: 'color: var(--accent-soft); background: rgba(50,41,91,0.5);',
+};
+---
+
+<article class="card group flex flex-col gap-4 animate-on-scroll hover:border-lavender/50 transition-all duration-300">
+  <!-- Image area -->
+  {data.imagen ? (
+    <div class="aspect-video w-full rounded-[var(--radius-sm)] overflow-hidden" style="background: var(--surface);">
+      <img
+        src={data.imagen}
+        alt={data.title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div
+      class="aspect-video w-full rounded-[var(--radius-sm)] flex items-center justify-center"
+      style="background: linear-gradient(135deg, var(--surface) 0%, var(--surface-card) 100%);"
+      aria-hidden="true"
+    >
+      <i class="fa-solid fa-cube text-4xl opacity-20 text-lavender"></i>
+    </div>
+  )}
+
+  <div class="flex flex-col gap-2 flex-1">
+    <!-- Category badge -->
+    <span
+      class="self-start text-xs font-mono px-2.5 py-1 rounded-full"
+      style={categoriaStyle[data.categoria] ?? ''}
+    >
+      {categoriaLabels[data.categoria] ?? data.categoria}
+    </span>
+
+    <h3 class="font-bold text-off-white">{data.title}</h3>
+    <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{data.description}</p>
+
+    {(data.unidades || data.material) && (
+      <div class="flex flex-wrap gap-2 mt-auto pt-3" style="border-top: 1px solid var(--border);">
+        {data.unidades && (
+          <span
+            class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full"
+            style="background: rgba(74,43,212,0.15); color: var(--accent-soft); border: 1px solid rgba(74,43,212,0.3);"
+          >
+            <i class="fa-solid fa-layer-group" style="font-size: 9px;" aria-hidden="true"></i>
+            {data.unidades} uds.
+          </span>
+        )}
+        {data.material && (
+          <span
+            class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full"
+            style="background: rgba(155,139,218,0.1); color: var(--accent-soft); border: 1px solid rgba(155,139,218,0.2);"
+          >
+            <i class="fa-solid fa-flask" style="font-size: 9px;" aria-hidden="true"></i>
+            {data.material}
+          </span>
+        )}
+      </div>
+    )}
+  </div>
+</article>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/Container.astro';
+---
+
+<BaseLayout
+  title="Aviso Legal | MrPrinteto Merch"
+  description="Aviso legal de merch.mrprinteto.com — información legal y condiciones de uso del sitio web de MrPrinteto."
+>
+  <Navbar />
+
+  <main class="pt-24 pb-20">
+    <Container>
+      <article class="prose max-w-2xl mx-auto" style="color: var(--text-muted);">
+
+        <h1 style="color: var(--text); letter-spacing: -0.02em;">Aviso Legal</h1>
+
+        <h2 style="color: var(--text);">1. Identificación del titular</h2>
+        <p>
+          En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información
+          y del Comercio Electrónico (LSSI-CE), se informa que el presente sitio web
+          <strong>merch.mrprinteto.com</strong> es operado bajo la marca <strong>MrPrinteto</strong>.
+        </p>
+        <ul>
+          <li><strong>Nombre comercial:</strong> MrPrinteto</li>
+          <li><strong>Domicilio:</strong> Salamanca, España</li>
+          <li><strong>Email de contacto:</strong> <a href="mailto:merch@mrprinteto.com" style="color: var(--accent);">merch@mrprinteto.com</a></li>
+        </ul>
+
+        <h2 style="color: var(--text);">2. Objeto y ámbito de aplicación</h2>
+        <p>
+          El presente Aviso Legal regula el acceso y uso del sitio web merch.mrprinteto.com,
+          cuya finalidad es la presentación de servicios de fabricación y personalización
+          de merchandising mediante impresión 3D.
+        </p>
+
+        <h2 style="color: var(--text);">3. Propiedad intelectual</h2>
+        <p>
+          Todos los contenidos del sitio web (textos, imágenes, diseños, código fuente,
+          marcas y demás elementos) son propiedad de MrPrinteto o de terceros que han
+          autorizado su uso, y están protegidos por la legislación española e internacional
+          de propiedad intelectual e industrial. Queda prohibida su reproducción total o
+          parcial sin autorización expresa y por escrito.
+        </p>
+
+        <h2 style="color: var(--text);">4. Limitación de responsabilidad</h2>
+        <p>
+          MrPrinteto no se responsabiliza de los daños o perjuicios derivados del uso o
+          imposibilidad de uso del sitio web, ni de la exactitud, exhaustividad o
+          actualidad de los contenidos publicados, salvo lo dispuesto por la legislación
+          vigente.
+        </p>
+
+        <h2 style="color: var(--text);">5. Ley aplicable y jurisdicción</h2>
+        <p>
+          El presente Aviso Legal se rige por la legislación española vigente. Para
+          cualquier controversia derivada del acceso o uso del sitio web, las partes se
+          someten a los juzgados y tribunales de Salamanca, salvo que la normativa
+          aplicable establezca otro fuero.
+        </p>
+
+        <p style="font-size: 0.85rem; margin-top: 3rem;">
+          Última actualización: julio de 2026
+        </p>
+      </article>
+    </Container>
+  </main>
+
+  <Footer />
+</BaseLayout>

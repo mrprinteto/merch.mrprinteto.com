@@ -1,0 +1,130 @@
+---
+const navLinks = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#proceso', label: 'Proceso' },
+  { href: '#galeria', label: 'Portfolio' },
+  { href: '#por-que', label: 'Por qué' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0" aria-label="MrPrinteto Merch — Inicio">
+        <img
+          src="https://assets.mrprinteto.com/branding/logo/mrp-text-white.png"
+          alt="MrPrinteto"
+          width="280"
+          height="72"
+          class="h-14 w-auto"
+        />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link text-sm font-medium text-off-white/70 hover:text-off-white transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA + hamburger -->
+      <div class="flex items-center gap-3">
+        <a href="#contacto" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">
+          Pide presupuesto
+        </a>
+
+        <button
+          id="menu-toggle"
+          class="md:hidden p-2 text-off-white rounded-[var(--radius-sm)] hover:bg-white/10 transition-colors"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú"
+        >
+          <i id="menu-icon" class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden"
+    role="navigation"
+    aria-label="Menú móvil"
+    style="background-color: rgba(15,17,20,0.98); border-top: 1px solid var(--border);"
+  >
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link py-3 text-off-white/70 hover:text-off-white transition-colors font-medium"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="#contacto" class="btn-primary mt-3 justify-center">
+        Pide presupuesto
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+
+  const closeMenu = () => {
+    menu?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    if (menuIcon) menuIcon.className = 'fa-solid fa-bars text-lg';
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu?.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      if (menuIcon) menuIcon.className = 'fa-solid fa-xmark text-lg';
+    }
+  });
+
+  // Close on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Active section highlighting
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            const active = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('text-off-white', active);
+            link.classList.toggle('text-off-white/70', !active);
+          });
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
+</script>

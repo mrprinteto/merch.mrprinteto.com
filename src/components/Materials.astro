@@ -1,0 +1,79 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+
+const materials = [
+  {
+    icon: 'fa-solid fa-droplet',
+    name: 'PLA',
+    subtitle: 'Estándar',
+    description:
+      'Colores vivos, acabado mate o satinado. Ideal para elementos decorativos, figuras, displays y piezas de interior. El más versátil.',
+  },
+  {
+    icon: 'fa-solid fa-shield-halved',
+    name: 'PETG',
+    subtitle: 'Resistente',
+    description:
+      'Más resistente y flexible que el PLA. Soporta más temperatura y esfuerzo mecánico. Perfecto para piezas funcionales de uso diario.',
+  },
+  {
+    icon: 'fa-solid fa-gem',
+    name: 'Resina UV',
+    subtitle: 'Alta resolución',
+    description:
+      'Superficie perfectamente lisa, detalle fino al límite. Para miniaturas, prototipos de precisión y piezas donde el acabado es crítico.',
+  },
+  {
+    icon: 'fa-solid fa-palette',
+    name: 'Multicolor (AMS)',
+    subtitle: 'Hasta 4 colores',
+    description:
+      'Hasta cuatro colores simultáneos gracias al sistema AMS de Bambu Lab. Piezas con identidad visual compleja sin postprocesado de pintura.',
+  },
+  {
+    icon: 'fa-solid fa-bolt',
+    name: 'Grabado láser',
+    subtitle: 'Permanente',
+    description:
+      'Sobre madera, cuero, metal anodizado o acrílico. Personalización grabada en profundidad: texto, logos y patrones con precisión al décimo de mm.',
+  },
+];
+---
+
+<Section id="materiales" style="background-color: var(--surface-card);">
+  <Container>
+    <div class="text-center mb-12 space-y-3 animate-on-scroll">
+      <p class="label-mono">// MATERIALES</p>
+      <h2 class="section-heading">Materiales y acabados a elegir</h2>
+      <p class="text-off-white/60 max-w-xl mx-auto">
+        Cada proyecto tiene su material óptimo. Te asesoro sin coste para
+        que el resultado sea exactamente el que necesitas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {materials.map((mat, i) => (
+        <div
+          class="card flex gap-4 animate-on-scroll hover:border-lavender/50 transition-colors"
+          data-delay={i + 1}
+        >
+          <div
+            class="w-10 h-10 rounded-[var(--radius-sm)] flex items-center justify-center flex-shrink-0 mt-0.5"
+            style="background: rgba(74,43,212,0.15); color: var(--accent);"
+            aria-hidden="true"
+          >
+            <i class={mat.icon}></i>
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-off-white">{mat.name}</h3>
+              <span class="label-mono text-[10px]">{mat.subtitle}</span>
+            </div>
+            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{mat.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

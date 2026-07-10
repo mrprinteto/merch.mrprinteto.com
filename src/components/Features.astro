@@ -1,0 +1,82 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+
+const features = [
+  {
+    icon: 'fa-solid fa-boxes-stacked',
+    title: 'Series cortas desde 10 uds.',
+    description: 'Sin mínimos abusivos. Ideal para equipos, eventos o pruebas de concepto antes de escalar.',
+  },
+  {
+    icon: 'fa-solid fa-calendar-check',
+    title: 'Entrega en 5–10 días',
+    description: 'Plazos reales, sin sorpresas. Proyectos urgentes bajo consulta — lo gestionamos.',
+  },
+  {
+    icon: 'fa-solid fa-pen-nib',
+    title: 'Diseño 3D incluido',
+    description: 'Aporta tu idea, boceto o fichero. Yo me encargo del modelado y la preparación para impresión.',
+  },
+  {
+    icon: 'fa-solid fa-user-tie',
+    title: 'Comunicación directa',
+    description: 'Sin intermediarios ni burocracia. Hablas con el maker que diseña e imprime tu pedido.',
+  },
+  {
+    icon: 'fa-solid fa-star',
+    title: 'Materiales premium',
+    description: 'Solo filamento de calidad contrastada y resinas técnicas. Nada de materiales baratos de relleno.',
+  },
+  {
+    icon: 'fa-solid fa-fingerprint',
+    title: 'Personalización real',
+    description: 'Cada pieza lleva tu logo, nombre o mensaje. No hay dos pedidos iguales — eso es el punto.',
+  },
+];
+---
+
+<Section id="por-que">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Left: heading + CTA -->
+      <div class="space-y-6 lg:sticky lg:top-24 animate-on-scroll">
+        <p class="label-mono">// POR QUÉ MRPRINTETO</p>
+        <h2 class="section-heading">Calidad de maker,<br />escala de negocio.</h2>
+        <p class="text-off-white/60 leading-relaxed">
+          No soy una fábrica anónima ni una plataforma de reencargo. Soy el
+          maker que recibe tu idea, la modela, la imprime y la revisa antes
+          de enviártela. Control total en cada paso.
+        </p>
+        <a href="#contacto" class="btn-primary">
+          Hablemos de tu proyecto
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- Right: feature grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {features.map((feat, i) => (
+          <div
+            class="flex gap-3 p-4 rounded-[var(--radius)] animate-on-scroll"
+            style="background: var(--surface-card); border: 1px solid var(--border);"
+            data-delay={i + 1}
+          >
+            <div
+              class="w-9 h-9 rounded-[var(--radius-sm)] flex items-center justify-center flex-shrink-0 mt-0.5 text-sm"
+              style="background: rgba(74,43,212,0.15); color: var(--accent);"
+              aria-hidden="true"
+            >
+              <i class={feat.icon}></i>
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-off-white text-sm">{feat.title}</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-muted);">{feat.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>

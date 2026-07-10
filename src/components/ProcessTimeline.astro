@@ -1,0 +1,105 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+
+const steps = [
+  {
+    number: '01',
+    icon: 'fa-solid fa-comments',
+    title: 'Cuéntame tu idea',
+    description:
+      'Escríbeme qué necesitas: tipo de pieza, cantidad, plazos y referencia visual si tienes. Sin formularios eternos.',
+  },
+  {
+    number: '02',
+    icon: 'fa-solid fa-pen-ruler',
+    title: 'Diseñamos juntos',
+    description:
+      'Adapto o creo el modelo 3D desde cero. Recibes una preview antes de imprimir — sin sorpresas.',
+  },
+  {
+    number: '03',
+    icon: 'fa-solid fa-print',
+    title: 'Imprimimos y acabamos',
+    description:
+      'Producción con filamento premium, máquinas calibradas profesionalmente. Control de calidad en cada unidad.',
+  },
+  {
+    number: '04',
+    icon: 'fa-solid fa-truck-fast',
+    title: 'Lo recibes',
+    description:
+      'Envío a toda España con seguimiento. Opción de recogida en Salamanca. Entrega en 5–10 días laborables.',
+  },
+];
+---
+
+<Section id="proceso" style="background-color: var(--surface-card);">
+  <Container>
+    <div class="text-center mb-14 space-y-3 animate-on-scroll">
+      <p class="label-mono">// PROCESO</p>
+      <h2 class="section-heading">De la idea al merch en 4 pasos</h2>
+    </div>
+
+    <!-- Desktop: horizontal timeline -->
+    <div class="hidden lg:grid grid-cols-4 gap-0 relative">
+      <!-- Connector line -->
+      <div
+        class="absolute top-8 left-[12.5%] right-[12.5%] h-px"
+        style="background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);"
+        aria-hidden="true"
+      ></div>
+
+      {steps.map((step, i) => (
+        <div class="flex flex-col items-center text-center px-4 space-y-4 animate-on-scroll" data-delay={i + 1}>
+          <!-- Number bubble -->
+          <div
+            class="relative z-10 w-16 h-16 rounded-full flex items-center justify-center font-mono font-bold text-sm flex-shrink-0"
+            style="background: var(--surface); border: 2px solid var(--accent); color: var(--accent);"
+          >
+            {step.number}
+          </div>
+
+          <div class="space-y-2">
+            <i class={`${step.icon} text-xl`} style="color: var(--accent-soft);" aria-hidden="true"></i>
+            <h3 class="font-bold text-off-white">{step.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile: vertical timeline -->
+    <div class="lg:hidden space-y-0">
+      {steps.map((step, i) => (
+        <div class="flex gap-5 animate-on-scroll" data-delay={i + 1}>
+          <!-- Left column: number + vertical line -->
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div
+              class="w-12 h-12 rounded-full flex items-center justify-center font-mono font-bold text-sm"
+              style="background: var(--surface); border: 2px solid var(--accent); color: var(--accent);"
+            >
+              {step.number}
+            </div>
+            {i < steps.length - 1 && (
+              <div class="w-px flex-1 my-2" style="background: var(--border); min-height: 40px;"></div>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="pb-8 space-y-1.5 pt-2">
+            <h3 class="font-bold text-off-white">{step.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12 animate-on-scroll">
+      <a href="#contacto" class="btn-primary">
+        Empieza ahora
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </Container>
+</Section>

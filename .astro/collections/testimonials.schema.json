@@ -1,0 +1,37 @@
+{
+  "$ref": "#/definitions/testimonials",
+  "definitions": {
+    "testimonials": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "empresa": {
+          "type": "string"
+        },
+        "cargo": {
+          "type": "string"
+        },
+        "texto": {
+          "type": "string"
+        },
+        "stars": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 5
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nombre",
+        "texto"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

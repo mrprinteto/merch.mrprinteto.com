@@ -1,0 +1,221 @@
+---
+// ContactForm.astro — client-side form, fetches POST /api/contact
+---
+
+<form id="contact-form" class="space-y-6" novalidate aria-label="Formulario de contacto">
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <!-- Nombre -->
+    <div class="space-y-1.5">
+      <label for="cf-nombre" class="label-mono">// Nombre</label>
+      <input
+        type="text"
+        id="cf-nombre"
+        name="nombre"
+        required
+        minlength="2"
+        maxlength="100"
+        autocomplete="name"
+        class="input-field"
+        placeholder="Tu nombre o empresa"
+      />
+      <p id="err-nombre" class="text-xs hidden" style="color:#f87171;" role="alert" aria-live="polite"></p>
+    </div>
+
+    <!-- Email -->
+    <div class="space-y-1.5">
+      <label for="cf-email" class="label-mono">// Email</label>
+      <input
+        type="email"
+        id="cf-email"
+        name="email"
+        required
+        autocomplete="email"
+        class="input-field"
+        placeholder="tu@empresa.com"
+      />
+      <p id="err-email" class="text-xs hidden" style="color:#f87171;" role="alert" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <!-- Tipo -->
+    <div class="space-y-1.5">
+      <label for="cf-tipo" class="label-mono">// Tipo de proyecto</label>
+      <select
+        id="cf-tipo"
+        name="tipo"
+        required
+        class="input-field cursor-pointer"
+        style="appearance: none;"
+      >
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="reunion">Reunión / Presentación</option>
+        <option value="regalo">Regalo corporativo</option>
+        <option value="evento">Evento / Feria</option>
+        <option value="personalizacion">Personalización libre</option>
+      </select>
+      <p id="err-tipo" class="text-xs hidden" style="color:#f87171;" role="alert" aria-live="polite"></p>
+    </div>
+
+    <!-- Cantidad -->
+    <div class="space-y-1.5">
+      <label for="cf-cantidad" class="label-mono">// Unidades aprox.</label>
+      <input
+        type="number"
+        id="cf-cantidad"
+        name="cantidad"
+        required
+        min="1"
+        max="10000"
+        class="input-field"
+        placeholder="p. ej. 25"
+      />
+      <p id="err-cantidad" class="text-xs hidden" style="color:#f87171;" role="alert" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Mensaje -->
+  <div class="space-y-1.5">
+    <label for="cf-mensaje" class="label-mono">// Cuéntame tu idea</label>
+    <textarea
+      id="cf-mensaje"
+      name="mensaje"
+      required
+      minlength="10"
+      maxlength="2000"
+      rows="5"
+      class="input-field resize-y"
+      placeholder="Describe tu proyecto: material preferido, tamaño, acabado, fecha límite…"
+    ></textarea>
+    <p id="err-mensaje" class="text-xs hidden" style="color:#f87171;" role="alert" aria-live="polite"></p>
+  </div>
+
+  <!-- Status messages -->
+  <div
+    id="msg-success"
+    class="hidden rounded-[var(--radius)] p-4 text-sm"
+    style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #86efac;"
+    role="alert"
+    aria-live="polite"
+  >
+    <i class="fa-solid fa-check-circle mr-2" aria-hidden="true"></i>
+    ¡Mensaje enviado! Te respondo en menos de 24 h.
+  </div>
+
+  <div
+    id="msg-error"
+    class="hidden rounded-[var(--radius)] p-4 text-sm"
+    style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;"
+    role="alert"
+    aria-live="polite"
+  >
+    <i class="fa-solid fa-triangle-exclamation mr-2" aria-hidden="true"></i>
+    <span id="msg-error-text">Error al enviar. Inténtalo de nuevo.</span>
+  </div>
+
+  <button type="submit" id="cf-submit" class="btn-primary">
+    <span id="cf-submit-label">Enviar solicitud</span>
+    <i id="cf-icon-arrow" class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    <i id="cf-icon-spin" class="fa-solid fa-spinner fa-spin hidden" aria-hidden="true"></i>
+  </button>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement;
+  const submitLabel = document.getElementById('cf-submit-label') as HTMLSpanElement;
+  const iconArrow = document.getElementById('cf-icon-arrow') as HTMLElement;
+  const iconSpin = document.getElementById('cf-icon-spin') as HTMLElement;
+  const msgSuccess = document.getElementById('msg-success') as HTMLElement;
+  const msgError = document.getElementById('msg-error') as HTMLElement;
+  const msgErrorText = document.getElementById('msg-error-text') as HTMLSpanElement;
+
+  const FIELDS = ['nombre', 'email', 'tipo', 'cantidad', 'mensaje'] as const;
+  const COOLDOWN_MS = 30_000;
+  let lastSubmit = 0;
+
+  function setLoading(loading: boolean) {
+    submitBtn.disabled = loading;
+    submitLabel.textContent = loading ? 'Enviando…' : 'Enviar solicitud';
+    iconArrow.classList.toggle('hidden', loading);
+    iconSpin.classList.toggle('hidden', !loading);
+  }
+
+  function clearErrors() {
+    FIELDS.forEach((f) => {
+      const errEl = document.getElementById(`err-${f}`);
+      const inputEl = document.getElementById(`cf-${f}`);
+      errEl?.classList.add('hidden');
+      inputEl?.classList.remove('error');
+    });
+    msgSuccess.classList.add('hidden');
+    msgError.classList.add('hidden');
+  }
+
+  function showFieldError(field: string, message: string) {
+    const errEl = document.getElementById(`err-${field}`);
+    const inputEl = document.getElementById(`cf-${field}`);
+    if (errEl) {
+      errEl.textContent = message;
+      errEl.classList.remove('hidden');
+    }
+    inputEl?.classList.add('error');
+  }
+
+  function showGlobalError(message: string) {
+    msgErrorText.textContent = message;
+    msgError.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    // Client-side cooldown
+    if (Date.now() - lastSubmit < COOLDOWN_MS) {
+      showGlobalError('Espera un momento antes de enviar de nuevo.');
+      return;
+    }
+
+    const payload = {
+      nombre: (document.getElementById('cf-nombre') as HTMLInputElement).value.trim(),
+      email: (document.getElementById('cf-email') as HTMLInputElement).value.trim(),
+      tipo: (document.getElementById('cf-tipo') as HTMLSelectElement).value,
+      cantidad: (document.getElementById('cf-cantidad') as HTMLInputElement).value,
+      mensaje: (document.getElementById('cf-mensaje') as HTMLTextAreaElement).value.trim(),
+    };
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const json = (await res.json()) as {
+        ok: boolean;
+        error?: string;
+        errors?: Record<string, string[]>;
+      };
+
+      if (res.ok && json.ok) {
+        lastSubmit = Date.now();
+        msgSuccess.classList.remove('hidden');
+        form.reset();
+      } else if (res.status === 422 && json.errors) {
+        Object.entries(json.errors).forEach(([field, msgs]) => {
+          if (msgs?.length) showFieldError(field, msgs[0]);
+        });
+      } else {
+        showGlobalError(json.error ?? 'Error al enviar. Inténtalo de nuevo.');
+      }
+    } catch {
+      showGlobalError('Error de conexión. Comprueba tu internet e inténtalo de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* ─── Brand design tokens ─────────────────────────────────── */
+@theme {
+  /* Palette */
+  --color-ink: #0f1114;
+  --color-deep-purple: #32295b;
+  --color-electric: #4a2bd4;
+  --color-lavender: #9b8bda;
+  --color-off-white: #f0eff3;
+
+  /* Extended tokens */
+  --color-surface-card: #171524;
+
+  /* Typography */
+  --font-sans: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ─── CSS custom properties (use with var()) ──────────────── */
+:root {
+  --bg: #0f1114;
+  --surface: #32295b;
+  --surface-card: #171524;
+  --accent: #4a2bd4;
+  --accent-soft: #9b8bda;
+  --text: #f0eff3;
+  --text-muted: rgba(240, 239, 243, 0.45);
+  --border: rgba(155, 139, 218, 0.32);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+/* ─── Base ────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Syne", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+/* ─── Navbar scroll state ─────────────────────────────────── */
+#navbar {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#navbar.scrolled {
+  background-color: rgba(15, 17, 20, 0.95);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+/* ─── Scroll animations ───────────────────────────────────── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger helpers */
+.animate-on-scroll[data-delay="1"] { transition-delay: 0.1s; }
+.animate-on-scroll[data-delay="2"] { transition-delay: 0.2s; }
+.animate-on-scroll[data-delay="3"] { transition-delay: 0.3s; }
+.animate-on-scroll[data-delay="4"] { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─── Component classes ───────────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-electric text-off-white
+      font-semibold rounded-[10px] hover:opacity-90 transition-opacity
+      focus-visible:outline-2 focus-visible:outline-offset-2
+      focus-visible:outline-electric disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 text-off-white
+      font-semibold rounded-[10px] hover:opacity-75 transition-opacity
+      focus-visible:outline-2 focus-visible:outline-offset-2
+      focus-visible:outline-lavender;
+    border: 1px solid var(--border);
+  }
+
+  .card {
+    @apply rounded-[10px] p-6;
+    background-color: var(--surface-card);
+    border: 1px solid var(--border);
+  }
+
+  .label-mono {
+    @apply font-mono text-xs text-lavender uppercase tracking-widest;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold text-off-white leading-tight;
+    letter-spacing: -0.02em;
+  }
+
+  .input-field {
+    @apply w-full rounded-[10px] px-4 py-3 text-off-white
+      focus:outline-none transition-colors;
+    background-color: var(--surface-card);
+    border: 1px solid var(--border);
+  }
+
+  .input-field::placeholder {
+    color: var(--text-muted);
+  }
+
+  .input-field:focus {
+    border-color: var(--accent);
+  }
+
+  .input-field.error {
+    border-color: #f87171;
+  }
+}

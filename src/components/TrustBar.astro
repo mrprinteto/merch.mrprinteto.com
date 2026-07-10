@@ -1,0 +1,131 @@
+---
+// TrustBar — auto-scrolling carousel of partner brand logos
+const brands = [
+  {
+    name: 'Elegoo',
+    src: 'https://assets.mrprinteto.com/brands/elegoo/elegoo-logo-negative.avif',
+    invert: false,
+  },
+  {
+    name: 'Creality',
+    src: 'https://assets.mrprinteto.com/brands/creality/creality-logo.svg',
+    invert: false,
+  },
+  {
+    name: 'Sakata 3D',
+    src: 'https://assets.mrprinteto.com/brands/sakata3d/logo.jpg',
+    invert: false,
+  },
+  {
+    name: 'LaserPecker',
+    src: 'https://assets.mrprinteto.com/brands/laserpecker/laserpecker-logo-negative.avif',
+    invert: false,
+  },
+  {
+    name: 'WeCreat',
+    src: 'https://assets.mrprinteto.com/brands/wecreat/wecreat-logo-negative.webp',
+    invert: false,
+  },
+  {
+    name: 'Anycubic',
+    src: 'https://assets.mrprinteto.com/brands/anycubic/anycubic-logo.webp',
+    invert: false,
+  },
+  {
+    name: 'FlashForge',
+    src: 'https://assets.mrprinteto.com/brands/flashforge/flashforge-logo-negative.webp',
+    invert: false,
+  },
+  {
+    name: 'Snapmaker',
+    src: 'https://assets.mrprinteto.com/brands/snapmaker/snapmaker-logo.webp',
+    invert: true,
+  },
+];
+
+// Duplicate list for seamless infinite loop
+const track = [...brands, ...brands];
+---
+
+<style>
+  @keyframes brand-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .brand-track {
+    display: flex;
+    width: max-content;
+    animation: brand-marquee 26s linear infinite;
+  }
+
+  /* Pause on hover so users can look at a specific logo */
+  .brand-carousel:hover .brand-track {
+    animation-play-state: paused;
+  }
+
+  /* Fade edges */
+  .brand-carousel {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 72px,
+      black calc(100% - 72px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 72px,
+      black calc(100% - 72px),
+      transparent 100%
+    );
+  }
+
+  /* Respect reduced-motion: freeze animation and wrap logos */
+  @media (prefers-reduced-motion: reduce) {
+    .brand-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="py-5">
+    <div class="flex flex-col sm:flex-row items-center gap-5">
+
+      <!-- Label -->
+      <p
+        class="label-mono whitespace-nowrap flex-shrink-0 sm:pl-8 lg:pl-16"
+        aria-label="Fabricado con maquinaria de"
+      >
+        Fabricado con:
+      </p>
+
+      <!-- Carousel -->
+      <div class="brand-carousel flex-1 overflow-hidden">
+        <div class="brand-track" role="list" aria-label="Marcas de maquinaria">
+          {track.map((brand, i) => (
+            <div
+              class="flex items-center justify-center px-10 flex-shrink-0"
+              role={i < brands.length ? 'listitem' : undefined}
+              aria-hidden={i >= brands.length ? 'true' : undefined}
+            >
+              <img
+                src={brand.src}
+                alt={i < brands.length ? brand.name : ''}
+                loading="lazy"
+                decoding="async"
+                class="h-7 w-auto max-w-[130px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                style={brand.invert ? 'filter: invert(1);' : undefined}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

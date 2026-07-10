@@ -1,0 +1,100 @@
+---
+const socialLinks = [
+  { href: 'https://instagram.com/mrprinteto', icon: 'fa-brands fa-instagram', label: 'Instagram' },
+  { href: 'https://twitter.com/mrprinteto', icon: 'fa-brands fa-x-twitter', label: 'X (Twitter)' },
+  { href: 'https://tiktok.com/@mrprinteto', icon: 'fa-brands fa-tiktok', label: 'TikTok' },
+  { href: 'https://youtube.com/@mrprinteto', icon: 'fa-brands fa-youtube', label: 'YouTube' },
+];
+---
+
+<footer class="border-t" style="border-color: var(--border); background-color: var(--surface-card);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+
+      <!-- Brand -->
+      <div class="space-y-4">
+        <a href="/" aria-label="MrPrinteto Merch — Inicio">
+          <img
+            src="https://assets.mrprinteto.com/branding/logo/mrp-text-white.png"
+            alt="MrPrinteto"
+            width="130"
+            height="34"
+            class="h-6 w-auto"
+          />
+        </a>
+        <p class="text-sm leading-relaxed" style="color: var(--text-muted);">
+          Merch personalizado con impresión 3D para empresas, eventos y equipos.
+          Hecho en Salamanca, entregado a toda España.
+        </p>
+        <div class="flex items-center gap-4">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              class="text-lavender/60 hover:text-lavender transition-colors text-lg"
+            >
+              <i class={link.icon} aria-hidden="true"></i>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="space-y-3">
+        <p class="label-mono mb-4">// Navegación</p>
+        {[
+          { href: '#servicios', label: 'Servicios' },
+          { href: '#proceso', label: 'Cómo funciona' },
+          { href: '#galeria', label: 'Portfolio' },
+          { href: '#por-que', label: 'Por qué MrPrinteto' },
+          { href: '#contacto', label: 'Pide presupuesto' },
+        ].map((link) => (
+          <a
+            href={link.href}
+            class="block text-sm transition-colors"
+            style="color: var(--text-muted);"
+            onmouseover="this.style.color='var(--text)'"
+            onmouseout="this.style.color='var(--text-muted)'"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Contact -->
+      <div class="space-y-3">
+        <p class="label-mono mb-4">// Contacto</p>
+        <a
+          href="mailto:merch@mrprinteto.com"
+          class="flex items-center gap-2 text-sm transition-colors"
+          style="color: var(--text-muted);"
+        >
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          merch@mrprinteto.com
+        </a>
+        <p class="text-sm" style="color: var(--text-muted);">
+          <i class="fa-solid fa-location-dot mr-2" aria-hidden="true"></i>
+          Salamanca, España
+        </p>
+        <p class="text-sm" style="color: var(--text-muted);">
+          <i class="fa-solid fa-clock mr-2" aria-hidden="true"></i>
+          Respuesta en &lt;24&nbsp;h
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+      style="border-top: 1px solid var(--border); color: var(--text-muted);"
+    >
+      <p>&copy; {new Date().getFullYear()} MrPrinteto. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a href="/aviso-legal" class="hover:text-off-white transition-colors">Aviso legal</a>
+        <a href="/privacidad" class="hover:text-off-white transition-colors">Privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  icon: string;       // FA class string, e.g. "fa-solid fa-gift"
+  title: string;
+  description: string;
+  href?: string;
+  delay?: number;
+}
+
+const { icon, title, description, href = '#contacto', delay } = Astro.props;
+---
+
+<article
+  class="card group flex flex-col gap-4 animate-on-scroll hover:border-lavender/50 transition-colors"
+  data-delay={delay}
+>
+  <div
+    class="w-12 h-12 rounded-[var(--radius)] flex items-center justify-center text-xl flex-shrink-0"
+    style="background: rgba(74,43,212,0.15); color: var(--accent);"
+    aria-hidden="true"
+  >
+    <i class={icon}></i>
+  </div>
+
+  <div class="space-y-2">
+    <h3 class="font-bold text-off-white text-lg">{title}</h3>
+    <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{description}</p>
+  </div>
+
+  <a
+    href={href}
+    class="mt-auto text-sm font-medium inline-flex items-center gap-1.5 transition-colors"
+    style="color: var(--accent-soft);"
+  >
+    Pedir esto
+    <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+  </a>
+</article>

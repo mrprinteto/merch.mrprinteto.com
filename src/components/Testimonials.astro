@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import Container from './Container.astro';
+
+const testimonials = await getCollection('testimonials');
+---
+
+<Section id="testimonios" style="background-color: var(--surface-card);">
+  <Container>
+    <div class="text-center mb-12 space-y-3 animate-on-scroll">
+      <p class="label-mono">// TESTIMONIOS</p>
+      <h2 class="section-heading">Lo que dicen los que ya pidieron</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {testimonials.map((t, i) => (
+        <article
+          class="card flex flex-col gap-4 animate-on-scroll"
+          data-delay={i + 1}
+        >
+          <!-- Stars -->
+          <div class="flex gap-1" aria-label={`${t.data.stars} de 5 estrellas`}>
+            {Array.from({ length: t.data.stars }).map(() => (
+              <i class="fa-solid fa-star text-sm" style="color: var(--accent);" aria-hidden="true"></i>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="text-sm leading-relaxed flex-1" style="color: var(--text-muted);">
+            <i class="fa-solid fa-quote-left text-xs mr-1" style="color: var(--accent-soft);" aria-hidden="true"></i>
+            {t.data.texto}
+          </blockquote>
+
+          <!-- Author -->
+          <footer class="flex items-center gap-3 pt-2" style="border-top: 1px solid var(--border);">
+            <div
+              class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
+              style="background: var(--surface); color: var(--accent-soft);"
+              aria-hidden="true"
+            >
+              {t.data.nombre.charAt(0)}
+            </div>
+            <div>
+              <p class="font-semibold text-off-white text-sm">{t.data.nombre}</p>
+              {(t.data.cargo || t.data.empresa) && (
+                <p class="text-xs" style="color: var(--text-muted);">
+                  {[t.data.cargo, t.data.empresa].filter(Boolean).join(' · ')}
+                </p>
+              )}
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Section>

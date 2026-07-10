@@ -1,0 +1,81 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+
+const faqs = [
+  {
+    pregunta: '¿Cuánto cuesta personalizar un pedido?',
+    respuesta:
+      'El precio depende del material, tamaño, cantidad y complejidad del diseño. Pídeme presupuesto sin compromiso — te respondo en menos de 24 horas con un precio cerrado, sin letra pequeña.',
+  },
+  {
+    pregunta: '¿Cuál es el mínimo de unidades?',
+    respuesta:
+      'Acepto pedidos desde 10 unidades para la mayoría de proyectos. Si necesitas menos, escríbeme igualmente y lo valoramos caso a caso — no es un no automático.',
+  },
+  {
+    pregunta: '¿En cuánto tiempo tengo el pedido?',
+    respuesta:
+      'El plazo habitual es de 5 a 10 días laborables desde la aprobación del diseño final. Proyectos con alta cantidad o materiales especiales pueden necesitar algo más. Si tienes una fecha límite, dímela desde el principio.',
+  },
+  {
+    pregunta: '¿Puedo aportar mi propio diseño o fichero 3D?',
+    respuesta:
+      'Sí, por supuesto. Acepto archivos STL, STEP, OBJ o ficheros de diseño vectorial para grabado láser. Si el fichero necesita ajustes para impresión, te lo indico antes de proceder.',
+  },
+  {
+    pregunta: '¿Qué materiales usáis?',
+    respuesta:
+      'PLA, PETG, resina UV y multicolor con sistema AMS. Para personalización sobre superficies: grabado láser en madera, cuero, metal anodizado y acrílico. Cada material tiene su uso óptimo — te asesoro sin coste.',
+  },
+  {
+    pregunta: '¿Hacéis envíos a toda España?',
+    respuesta:
+      'Sí, envío a toda la península, Baleares y Canarias (con coste adicional para islas). También puedes recoger el pedido en Salamanca si te viene bien.',
+  },
+  {
+    pregunta: '¿Incluís packaging personalizado?',
+    respuesta:
+      'El packaging básico está incluido. Para packaging completamente personalizado con tu branding (cajas impresas, tarjetas, papel de seda) lo cotizamos aparte según el volumen.',
+  },
+];
+---
+
+<Section id="faq">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+      <!-- Left: heading -->
+      <div class="space-y-4 animate-on-scroll">
+        <p class="label-mono">// FAQ</p>
+        <h2 class="section-heading">Preguntas frecuentes</h2>
+        <p class="text-off-white/60 leading-relaxed">
+          Si no encuentras tu respuesta aquí, escríbeme directamente.
+        </p>
+        <a href="#contacto" class="btn-ghost text-sm py-2">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          Pregúntame algo
+        </a>
+      </div>
+
+      <!-- Right: accordion -->
+      <div class="lg:col-span-2 space-y-0 animate-on-scroll" data-delay="1">
+        {faqs.map((faq) => (
+          <details class="group" style="border-bottom: 1px solid var(--border);">
+            <summary class="flex items-center justify-between py-5 cursor-pointer list-none gap-4">
+              <span class="font-semibold text-off-white">{faq.pregunta}</span>
+              <i
+                class="fa-solid fa-chevron-down flex-shrink-0 transition-transform duration-300 group-open:rotate-180"
+                style="color: var(--accent-soft);"
+                aria-hidden="true"
+              ></i>
+            </summary>
+            <div class="pb-5">
+              <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{faq.respuesta}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>
