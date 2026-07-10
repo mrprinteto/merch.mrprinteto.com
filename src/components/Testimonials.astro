@@ -22,7 +22,7 @@ const testimonials = await getCollection('testimonials');
           <!-- Stars -->
           <div class="flex gap-1" aria-label={`${t.data.stars} de 5 estrellas`}>
             {Array.from({ length: t.data.stars }).map(() => (
-              <i class="fa-solid fa-star text-sm" style="color: var(--accent);" aria-hidden="true"></i>
+              <i class="fa-solid fa-star text-sm" style="color: orange" aria-hidden="true"></i>
             ))}
           </div>
 

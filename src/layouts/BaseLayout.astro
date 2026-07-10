@@ -47,6 +47,10 @@ const jsonLd = {
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="MrPrinteto" />
+    <meta name="keywords" content="merch personalizado, merchandising empresas, impresión 3D, regalos corporativos, eventos, llaveros personalizados, Madrid" />
+    <meta name="theme-color" content="#0f1114" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
@@ -54,6 +58,9 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="MrPrinteto Merch" />
@@ -61,14 +68,20 @@ const jsonLd = {
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@mrprinteto" />
+    <meta name="twitter:creator" content="@mrprinteto" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
 
     <!-- Favicon -->
     <link
       rel="icon"
       type="image/svg+xml"
+      href="https://assets.mrprinteto.com/branding/logo/mrp-icon-vector.svg"
+    />
+    <link
+      rel="apple-touch-icon"
       href="https://assets.mrprinteto.com/branding/logo/mrp-icon-vector.svg"
     />
 

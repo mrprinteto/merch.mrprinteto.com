@@ -34,6 +34,7 @@
 /* ─── Base ────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* offset for fixed navbar (h-20 = 5rem + breathing room) */
 }
 
 body {
