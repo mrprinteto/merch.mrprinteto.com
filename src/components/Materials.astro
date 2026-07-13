@@ -4,39 +4,53 @@ import Container from './Container.astro';
 
 const materials = [
   {
-    icon: 'fa-solid fa-droplet',
+    icon: 'fa-solid fa-gem',
     name: 'PLA',
     subtitle: 'Estándar',
     description:
-      'Colores vivos, acabado mate o satinado. Ideal para elementos decorativos, figuras, displays y piezas de interior. El más versátil.',
+      'Colores vivos, acabado mate o satinado. Ideal para decoración, figuras, displays y piezas de interior. El más popular por su acabado y variedad de colores.',
   },
   {
     icon: 'fa-solid fa-shield-halved',
     name: 'PETG',
-    subtitle: 'Resistente',
+    subtitle: 'Resistente · Duradero',
     description:
       'Más resistente y flexible que el PLA. Soporta más temperatura y esfuerzo mecánico. Perfecto para piezas funcionales de uso diario.',
   },
   {
-    icon: 'fa-solid fa-gem',
+    icon: 'fa-solid fa-temperature-high',
+    name: 'ABS',
+    subtitle: 'Técnico',
+    description:
+      'Alta resistencia al calor y al impacto. Ligero y fácil de lijar o pintar. Ideal para piezas que van a estar expuestas al sol, al coche o a temperaturas altas.',
+  },
+  {
+    icon: 'fa-solid fa-wave-square',
+    name: 'TPU/FLEX',
+    subtitle: 'Flexible',
+    description:
+      'Material elástico y resistente al desgaste. Se dobla, estira y vuelve a su forma sin romperse. Ideal para merch, fundas, agarres y piezas que necesitan absorber golpes o vibraciones.',
+  },
+  {
+    icon: 'fa-solid fa-droplet',
     name: 'Resina UV',
     subtitle: 'Alta resolución',
     description:
-      'Superficie perfectamente lisa, detalle fino al límite. Para miniaturas, prototipos de precisión y piezas donde el acabado es crítico.',
+      'Superficie perfectamente lisa, detalle fino al límite. Ideal para miniaturas y piezas de coleccion donde el acabado visual es lo más importante.',
   },
   {
     icon: 'fa-solid fa-palette',
-    name: 'Multicolor (AMS)',
-    subtitle: 'Hasta 4 colores',
+    name: 'Multicolor',
+    subtitle: '4 colores',
     description:
-      'Hasta cuatro colores simultáneos gracias al sistema AMS de Bambu Lab. Piezas con identidad visual compleja sin postprocesado de pintura.',
+      'Hasta cuatro colores simultáneos gracias a los sistemas multicolor. Piezas con identidad visual compleja sin postprocesado de pintura.',
   },
   {
     icon: 'fa-solid fa-bolt',
-    name: 'Grabado láser',
-    subtitle: 'Permanente',
+    name: 'Grabado/corte',
+    subtitle: 'Láser',
     description:
-      'Sobre madera, cuero, metal anodizado o acrílico. Personalización grabada en profundidad: texto, logos y patrones con precisión al décimo de mm.',
+      'Sobre madera, corcho, cuero, metal y un largo etc de materiales. Personalización grabada en profundidad: texto, logos y patrones con precisión al mm.',
   },
 ];
 ---
@@ -45,9 +59,9 @@ const materials = [
   <Container>
     <div class="text-center mb-12 space-y-3 animate-on-scroll">
       <p class="label-mono">// MATERIALES</p>
-      <h2 class="section-heading">Materiales y acabados a elegir</h2>
+      <h2 class="section-heading">Tipos de materiales y acabados</h2>
       <p class="text-off-white/60 max-w-xl mx-auto">
-        Cada proyecto tiene su material óptimo. Te asesoro sin coste para
+        En cada proyecto elegimos cual es su material más óptimo. Te asesoro sin coste para
         que el resultado sea exactamente el que necesitas.
       </p>
     </div>

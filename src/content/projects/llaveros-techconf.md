@@ -1,6 +1,6 @@
 ---
 title: Medallas Villanueva de la Cañada Throwdown
-description: Medallas con el logo del evento Villanuvea de la Cañada Throwdown. PLA multicolor, acabado suave. Grabadas con láser en directo con los ganadores.
+description: Medallas con el logo del evento Villanuvea de la Cañada Throwdown. PLA multicolor con acabado suave. Grabadas con láser en directo en el propio evento con los ganadores.
 categoria: evento
 destacado: true
 unidades: 54
