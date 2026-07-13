@@ -5,7 +5,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    categoria: z.enum(['reunion', 'regalo', 'evento', 'personalizacion']),
+    categoria: z.enum(['reunion', 'regalo', 'evento', 'personalizacion', 'merch', 'catalogo']),
     imagen: z.string().optional(),
     destacado: z.boolean().default(false),
     unidades: z.number().optional(),

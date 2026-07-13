@@ -1,10 +1,10 @@
 ---
-title: Sets de escritorio corporativos
-description: 30 sets para un bufete de abogados en Madrid. Base de escritorio con logo grabado en láser sobre madera de abedul y soporte para móvil en PETG negro mate.
-categoria: regalo
+title: Catálogo privado BOX CrossSaiyan
+description: Merchandising variado para el box CrossSaiyan. Gracias a nuestros catalogos privados pueden acceder y solicitar su nuevo presupuesto en el momento que ellos quieran.
+categoria: catalogo
 destacado: true
-unidades: 30
-material: PETG + Grabado láser en madera
+unidades: 200
+material: PLA Multicolor (Multicabezal)
 ---
 
 El cliente quería diferenciarse en los regalos de fin de año: nada de bolígrafos ni agendas. Diseñamos un set funcional — soporte para móvil y base organizadora de escritorio — con el logo del despacho grabado con precisión láser.

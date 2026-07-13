@@ -1,10 +1,10 @@
 ---
-title: Medallas personalizados Villanueva de la Cañada Throwdown
-description: 54 medallas con el logo del evento de crosstraining Throwdown. PLA multicolor, acabado suave. Entregadas el dia del evento.
+title: Medallas Villanueva de la Cañada Throwdown
+description: Medallas con el logo del evento Villanuvea de la Cañada Throwdown. PLA multicolor, acabado suave. Grabadas con láser en directo con los ganadores.
 categoria: evento
 destacado: true
-unidades: 200
-material: PLA multicolor (AMS)
+unidades: 54
+material: PLA Multicolor (Multicabezal)
 ---
 
 Serie de llaveros personalizados para la edición anual de TechConf Madrid. El cliente necesitaba un detalle diferencial para los asistentes — nada genérico, nada que se tire a la papelera.
