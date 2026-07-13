@@ -1,6 +1,6 @@
 ---
-title: Llaveros personalizados TechConf
-description: 200 llaveros con el logo del evento para una conferencia de tecnología en Madrid. PLA multicolor con sistema AMS, acabado mate. Entregados en 7 días.
+title: Medallas personalizados Villanueva de la Cañada Throwdown
+description: 54 medallas con el logo del evento de crosstraining Throwdown. PLA multicolor, acabado suave. Entregadas el dia del evento.
 categoria: evento
 destacado: true
 unidades: 200

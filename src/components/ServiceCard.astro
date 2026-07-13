@@ -24,7 +24,7 @@ const { icon, title, description, href = '#contacto', delay } = Astro.props;
 
   <div class="space-y-2">
     <h3 class="font-bold text-off-white text-lg">{title}</h3>
-    <p class="text-sm leading-relaxed" style="color: var(--text-muted);">{description}</p>
+    <p class="text-sm leading-relaxed whitespace-pre-line" style="color: var(--text-muted);">{description}</p>
   </div>
 
   <a
@@ -32,7 +32,7 @@ const { icon, title, description, href = '#contacto', delay } = Astro.props;
     class="mt-auto text-sm font-medium inline-flex items-center gap-1.5 transition-colors"
     style="color: var(--accent-soft);"
   >
-    Pedir esto
+    Lo quiero
     <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
   </a>
 </article>
