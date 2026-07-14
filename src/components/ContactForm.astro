@@ -129,7 +129,7 @@
   const msgError = document.getElementById('msg-error') as HTMLElement;
   const msgErrorText = document.getElementById('msg-error-text') as HTMLSpanElement;
 
-  const FIELDS = ['nombre', 'email', 'tipo', 'cantidad', 'mensaje'] as const;
+  const FIELDS = ['nombre', 'email', 'tipo', 'telefono', 'mensaje'] as const;
   const COOLDOWN_MS = 30_000;
   let lastSubmit = 0;
 
@@ -180,8 +180,8 @@
       nombre: (document.getElementById('cf-nombre') as HTMLInputElement).value.trim(),
       email: (document.getElementById('cf-email') as HTMLInputElement).value.trim(),
       tipo: (document.getElementById('cf-tipo') as HTMLSelectElement).value,
-      cantidad: (document.getElementById('cf-cantidad') as HTMLInputElement).value,
       mensaje: (document.getElementById('cf-mensaje') as HTMLTextAreaElement).value.trim(),
+      telefono: (document.getElementById('cf-telefono') as HTMLInputElement).value.trim(),
     };
 
     setLoading(true);
