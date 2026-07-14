@@ -40,7 +40,7 @@ const contactSchema = z.object({
     .string()
     .min(7, 'El teléfono debe tener al menos 7 caracteres')
     .max(30, 'El teléfono es demasiado largo')
-    .regex(/^[0-9]+$/, 'El teléfono solo puede contener números'),
+    .regex(/^[+\d\s\-().]+$/, 'El teléfono no es válido'),
   mensaje: z
     .string()
     .min(10, 'El mensaje debe tener al menos 10 caracteres')
