@@ -36,11 +36,11 @@ const contactSchema = z.object({
   tipo: z.enum(['reunion', 'regalo', 'evento', 'personalizacion'], {
     errorMap: () => ({ message: 'Selecciona un tipo de proyecto válido' }),
   }),
-  cantidad: z.coerce
-    .number({ invalid_type_error: 'Introduce una cantidad válida' })
-    .int('La cantidad debe ser un número entero')
-    .min(1, 'La cantidad mínima es 1')
-    .max(10_000, 'Contacta directamente para pedidos superiores a 10.000 unidades'),
+  telefono: z
+    .string()
+    .min(7, 'El teléfono debe tener al menos 7 caracteres')
+    .max(30, 'El teléfono es demasiado largo')
+    .regex(/^[0-9]+$/, 'El teléfono solo puede contener números'),
   mensaje: z
     .string()
     .min(10, 'El mensaje debe tener al menos 10 caracteres')
@@ -83,8 +83,8 @@ function buildEmailHtml(data: z.infer<typeof contactSchema>): string {
               <td style="padding: 8px 0; color: #111;">${TIPO_LABELS[data.tipo] ?? data.tipo}</td>
             </tr>
             <tr style="border-top: 1px solid #f0f0f0;">
-              <td style="padding: 8px 0; color: #666; vertical-align: top;">Cantidad</td>
-              <td style="padding: 8px 0; color: #111;">${data.cantidad} unidades</td>
+              <td style="padding: 8px 0; color: #666; vertical-align: top;">Telefono</td>
+              <td style="padding: 8px 0; color: #111;">${data.telefono}</td>
             </tr>
             <tr style="border-top: 1px solid #f0f0f0;">
               <td style="padding: 8px 0; color: #666; vertical-align: top;">Mensaje</td>
