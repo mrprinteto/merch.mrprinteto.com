@@ -97,7 +97,7 @@ const track = [...brands, ...brands];
   }
 </style>
 
-<div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden;">
   <div class="py-5">
     <div class="flex flex-col sm:flex-row items-center gap-5">
 
@@ -110,7 +110,7 @@ const track = [...brands, ...brands];
       </p>
 
       <!-- Carousel -->
-      <div class="brand-carousel flex-1 overflow-hidden">
+      <div class="brand-carousel w-full min-w-0 flex-1 overflow-hidden">
         <div class="brand-track" role="list" aria-label="Marcas de maquinaria">
           {track.map((brand, i) => (
             <div
