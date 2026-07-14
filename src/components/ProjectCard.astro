@@ -26,15 +26,34 @@ const categoriaStyle: Record<string, string> = {
   merch: 'color: var(--accent-soft); background: rgba(155,139,218,0.12);',
   catalogo: 'color: var(--accent-soft); background: rgba(155,139,218,0.12);'
 };
+
+const imageByTitle: Record<string, { src: string; alt: string }> = {
+  'Medallas Villanueva de la Cañada Throwdown': {
+    src: 'https://assets.mrprinteto.com/content/images/medallas.jpeg',
+    alt: 'Imagen1'
+  },
+  'Merch personalizado marca AlkeMut': {
+    src: 'https://assets.mrprinteto.com/content/images/alkemut.jpg',
+    alt: 'Imagen2'
+  },
+  'Catálogo privado BOX CrossSaiyan': {
+    src: 'https://assets.mrprinteto.com/content/images/saiyan.jpg',
+    alt: 'Imagen3'
+  }
+};
+
+const fallbackImage = imageByTitle[data.title];
+const imageSrc = data.imagen ?? fallbackImage?.src;
+const imageAlt = fallbackImage?.alt ?? data.title;
 ---
 
 <article class="card group flex flex-col gap-4 animate-on-scroll hover:border-lavender/50 transition-all duration-300">
   <!-- Image area -->
-  {data.imagen ? (
-    <div class="aspect-video w-full rounded-[var(--radius-sm)] overflow-hidden" style="background: var(--surface);">
+  {imageSrc ? (
+    <div class="aspect-video w-full rounded-[var(--radius-sm)] overflow-hidden border border-white/10" style="background: var(--surface);">
       <img
-        src={data.imagen}
-        alt={data.title}
+        src={imageSrc}
+        alt={imageAlt}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         loading="lazy"
         decoding="async"
